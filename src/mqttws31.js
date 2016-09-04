@@ -18,7 +18,7 @@
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([root], factory);
-    } else if (typeof exports === 'object') {
+    } else if (typeof exports === 'object' && typeof require === 'function') {
         module.exports = factory(root);
     } else {
         if (typeof root.Paho === 'undefined') {

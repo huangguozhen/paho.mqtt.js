@@ -15,20 +15,23 @@
  *    Guozhen Huang - improve to umd library
  *******************************************************************************/
 
-(function(root, factory) {
+(function(factory) {
+    var root = (typeof self == 'object' && self.self === self && self) ||
+      (typeof global == 'object' && global.global === global && global);
+
     if (typeof define === 'function' && define.amd) {
       define([], function () {
         return factory(root)
       });
-    } else if (typeof exports === 'object' && typeof require === 'function') {
-        module.exports = factory(root);
+    } else if (typeof exports === 'object') {
+      factory(root);
     } else {
-        if (typeof root.Paho === 'undefined') {
-            root.Paho = {};
-        }
-        root.Paho.MQTT = factory(root);
+      if (typeof root.Paho === 'undefined') {
+        root.Paho = {};
+      }
+      root.Paho.MQTT = factory(root);
     }
-}(this, function(global) {
+})(function(global) {
 	// Private variables below, these are only visible inside the function closure
 	// which is used to define the module.
 
@@ -2084,4 +2087,4 @@
 		Message: Message
 	};
 
-}));
+});

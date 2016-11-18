@@ -3,7 +3,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/huangguozhen/paho.mqtt.js)
 
 The Paho JavaScript Client is a browser-based library that uses WebSockets to connect
-to an MQTT server.  
+to an MQTT server. fork from [eclipse.paho.mqtt](http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.javascript.git/)
 
 Only expose a single object name in the global namespace. Everything must go through
 this module. Global Paho.MQTT module only has a single public function, client, which
@@ -44,10 +44,10 @@ The source of the client is in:
   an Error containing an error message intended for developer use, if it detects
   an error with any parameter.
 
-### Example
+### Example for browser globals
 
 ```JavaScript
-
+<script src="./mqttws31js"></script>
 client = new Paho.MQTT.Client(location.hostname, Number(location.port), "clientId");
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
@@ -58,7 +58,7 @@ function onConnect() {
   client.subscribe("/World");
   message = new Paho.MQTT.Message("Hello");
   message.destinationName = "/World";
-  client.send(message); 
+  client.send(message);
 };
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0)
@@ -66,6 +66,21 @@ function onConnectionLost(responseObject) {
 };
 function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
-  client.disconnect(); 
+  client.disconnect();
 };
+```
+
+### Example for AMD
+
+```JavaScript
+define(['paho.mqtt.js'], function (PahoMQTT) {
+    client = new PahoMQTT.Client(location.hostname, Number(location.port), "clientId");
+})
+```
+
+### Example for Node, CommonJS-like
+
+```JavaScript
+var PahoMQTT = require('paho.mqtt.js')
+client = new PahoMQTT.Client(location.hostname, Number(location.port), "clientId");
 ```

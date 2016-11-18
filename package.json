@@ -1,8 +1,8 @@
 {
   "name": "paho.mqtt.js",
-  "version": "2.0.0",
+  "version": "1.1.0",
   "description": "The Paho JavaScript Client is a browser-based library that uses WebSockets to connect to an MQTT server.",
-  "main": "index.js",
+  "main": "src/mqttws31.js",
   "scripts": {
     "test": "better-npm-run test"
   },

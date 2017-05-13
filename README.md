@@ -65,6 +65,8 @@ function onConnectionLost(responseObject) {
     console.log("onConnectionLost:"+responseObject.errorMessage);
 };
 function onMessageArrived(message) {
+  // If the transmitted data is non-UTF8 formatted data, do not use payloadString
+  // It will throw an error from parseUTF8. use payloadBytes instead.
   console.log("onMessageArrived:"+message.payloadString);
   client.disconnect();
 };

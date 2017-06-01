@@ -24,7 +24,7 @@
         return factory(root)
       });
     } else if (typeof exports === 'object') {
-      factory(root);
+      module.exports = factory(root);
     } else {
       if (typeof root.Paho === 'undefined') {
         root.Paho = {};
